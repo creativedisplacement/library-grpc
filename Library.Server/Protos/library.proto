@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "Library.Server";
+
+package library;
+
+// The greeting service definition.
+service Books {
+  // Sends a greeting
+  rpc GetBooks (GetBooksRequest) returns (BooksReply);
+}
+
+// The request message containing the user's name.
+message GetBooksRequest {
+  string title = 1;
+  repeated string categoryIds = 2;
+  string lenderId = 3;
+  bool IsAvailable = 4;
+}
+
+// The response message containing the greetings.
+message BooksReply {
+	repeated BookReply books = 1;
+}
+
+
+message BookReply {
+  string id = 1;
+  string title = 2;
+  repeated CategoryReply categoryIds = 3;
+  LenderReply lender = 4;
+}
+
+message CategoryReply { 
+    string id = 1;
+    string name = 2;
+}
+
+message LenderReply { 
+	string id = 1;
+	string name = 2;
+    string email = 3;
+    bool isAdmin = 4;
+}
